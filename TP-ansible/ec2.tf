@@ -23,7 +23,7 @@ resource "aws_instance" "frazer-ec2" {
 resource "aws_instance" "ajc-ec2" {
   ami             = data.aws_ami.my-ami.id
   key_name        = "frazer-kp-ajc1"
-  instance_type   = data.local_file.file1.content
+  instance_type   = "${var.instance_type}"
   security_groups = ["${aws_security_group.my_sg.name}", "frazer-sg-web"]
   tags = {
     Name = "${var.admin}-ec2-ajc"
@@ -37,9 +37,11 @@ resource "aws_instance" "ajc-ec2" {
   provisioner "remote-exec" {
     inline = [
       "sudo apt-get update -y",
-      "sudo apt-get -y install nginx",
-      "sudo systemctl enable nginx",
-      "sudo systemctl start nginx"
+      "sudo apt-get -y install ansible git",
+      "git clone https://github.com/sadofrazer/deploy_wordpress.git",
+      "cd deploy_wordpress",
+      "ansible-galaxy install -r roles/requirements.yml",
+      "ansible-playbook -i hosts.yml wordpress.yml -e wp_port=${var.port}"
     ]
 
     connection {
@@ -56,7 +58,7 @@ data "aws_ami" "my-ami" {
   owners      = ["099720109477"]
   filter {
     name   = "name"
-    values = ["ubuntu/images/hvm-ssd/ubuntu-focal*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-bionic-18.04-amd64-server-*"]
   }
 }
 
