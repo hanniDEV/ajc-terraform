@@ -10,10 +10,10 @@ resource "aws_instance" "frazer-ec2" {
 
 data "aws_ami" "my-ami" {
   most_recent = true
-  owners      = ["amazon"]
+  owners      = ["099720109477"]
   filter {
     name   = "name"
-    values = ["Deep Learning AMI (Amazon Linux 2)*"]
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal*"]
   }
 }
 

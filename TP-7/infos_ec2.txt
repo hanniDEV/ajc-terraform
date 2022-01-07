@@ -1,0 +1,1 @@
+frazer [ PUBLIC IP: 54.205.174.141 , ID: i-0e1e9a6d6fae0c4bf , AZ: us-east-1b ]

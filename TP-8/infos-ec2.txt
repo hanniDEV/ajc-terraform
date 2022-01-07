@@ -1,0 +1,2 @@
+frazer-ec2 [PUBLIC IP : 54.174.49.170 , ID: i-03392a8582826a6e2 , AZ: us-east-1b]
+frazer-ec2 [PUBLIC IP : 54.165.216.9 , ID: i-0625faf6ae39f4809 , AZ: us-east-1b]
