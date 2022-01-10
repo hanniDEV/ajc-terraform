@@ -16,6 +16,10 @@ data "aws_ami" "my-ami" {
     values = ["ubuntu/images/hvm-ssd/ubuntu-focal*"]
   }
 }
+resource "aws_eip" "my_eip" {
+  vpc      = true
+  instance = aws_instance.frazer-ec2.id
+}
 
 data "local_file" "file1" {
   filename = "/Users/sadofrazer/Données/DevOps/TERRAFORM/terraform_training/AJC/TP-7/infos.txt"
